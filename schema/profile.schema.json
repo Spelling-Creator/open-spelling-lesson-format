@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:oslf:schema:profile:0.1",
+  "title": "OSLF profile",
+  "description": "A shareable set of lesson shape rules, OSLF version 0.1 (draft). See FILE-FORMAT.md section 4.",
+  "type": "object",
+  "required": ["oslfProfile", "id", "name", "rules"],
+  "additionalProperties": false,
+  "properties": {
+    "oslfProfile": { "const": "0.1" },
+    "id": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "version": { "type": "string" },
+    "description": { "type": "string" },
+    "publisher": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "pattern": "^(https?://|mailto:)" }
+      }
+    },
+    "license": { "type": "string" },
+    "rules": { "type": "array", "items": { "$ref": "#/$defs/rule" } },
+    "extensions": {
+      "type": "object",
+      "propertyNames": { "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:" }
+    }
+  },
+  "$defs": {
+    "range": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min": { "type": "integer", "minimum": 0 },
+        "max": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "questionType": {
+      "enum": [
+        "known",
+        "prior-knowledge",
+        "math",
+        "semi-open",
+        "tight-open",
+        "would-you-rather",
+        "paraphrase",
+        "broad-open"
+      ]
+    },
+    "questionTypes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/questionType" }
+    },
+    "slot": {
+      "type": "object",
+      "required": ["block"],
+      "additionalProperties": false,
+      "properties": {
+        "block": {
+          "enum": ["passage", "spelling", "image", "question", "vakt"]
+        },
+        "questionType": {
+          "oneOf": [
+            { "$ref": "#/$defs/questionType" },
+            { "$ref": "#/$defs/questionTypes" }
+          ]
+        },
+        "count": { "$ref": "#/$defs/range" }
+      },
+      "if": { "properties": { "block": { "const": "question" } } },
+      "then": { "required": ["questionType"] },
+      "else": { "not": { "required": ["questionType"] } }
+    },
+    "rule": {
+      "type": "object",
+      "required": ["rule"],
+      "properties": {
+        "rule": { "type": "string", "minLength": 1 },
+        "id": { "type": "string", "minLength": 1 },
+        "severity": { "enum": ["error", "warning"] },
+        "description": { "type": "string" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "rule": { "const": "section-count" } } },
+          "then": {
+            "required": ["count"],
+            "properties": { "count": { "$ref": "#/$defs/range" } }
+          }
+        },
+        {
+          "if": { "properties": { "rule": { "const": "section-shape" } } },
+          "then": {
+            "required": ["slots"],
+            "properties": {
+              "slots": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/slot" } },
+              "allowOther": { "type": "boolean" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "rule": { "const": "spelling-words" } } },
+          "then": {
+            "properties": {
+              "count": { "$ref": "#/$defs/range" },
+              "letters": { "$ref": "#/$defs/range" },
+              "uniqueInLesson": { "type": "boolean" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "rule": {
+                "enum": ["answer-in-passage", "answer-not-in-passage", "prompt-gives-answer"]
+              }
+            }
+          },
+          "then": {
+            "required": ["questionTypes"],
+            "properties": { "questionTypes": { "$ref": "#/$defs/questionTypes" } }
+          }
+        },
+        {
+          "if": { "properties": { "rule": { "const": "answer-reuse" } } },
+          "then": {
+            "properties": { "questionTypes": { "$ref": "#/$defs/questionTypes" } }
+          }
+        }
+      ]
+    }
+  }
+}

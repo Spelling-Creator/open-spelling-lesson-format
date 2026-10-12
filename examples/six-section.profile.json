@@ -1,0 +1,66 @@
+{
+  "oslfProfile": "0.1",
+  "id": "urn:oslf:example:six-section",
+  "name": "Example: six sections of fifteen questions",
+  "version": "0.1",
+  "description": "An example profile for the OSLF draft. Six sections, each with an optional image, a passage, four spelling words and fifteen questions in a fixed order, with optional would-you-rather questions and an optional VAKT activity at the end.",
+  "license": "BSD-3-Clause",
+  "rules": [
+    {
+      "rule": "section-count",
+      "id": "six-sections",
+      "count": { "min": 6, "max": 6 }
+    },
+    {
+      "rule": "section-shape",
+      "id": "section-order",
+      "slots": [
+        { "block": "image", "count": { "min": 0, "max": 1 } },
+        { "block": "passage", "count": { "min": 1, "max": 2 } },
+        { "block": "spelling" },
+        { "block": "question", "questionType": "known", "count": { "min": 3, "max": 3 } },
+        { "block": "question", "questionType": "math", "count": { "min": 2, "max": 2 } },
+        { "block": "question", "questionType": "semi-open", "count": { "min": 2, "max": 2 } },
+        { "block": "question", "questionType": "prior-knowledge" },
+        { "block": "question", "questionType": "tight-open", "count": { "min": 4, "max": 4 } },
+        { "block": "question", "questionType": "would-you-rather", "count": { "min": 0 } },
+        {
+          "block": "question",
+          "questionType": ["paraphrase", "broad-open"],
+          "count": { "min": 3, "max": 3 }
+        },
+        { "block": "vakt", "count": { "min": 0, "max": 1 } }
+      ]
+    },
+    {
+      "rule": "spelling-words",
+      "id": "spelling-words",
+      "count": { "min": 4, "max": 4 },
+      "letters": { "min": 6, "max": 9 },
+      "uniqueInLesson": true
+    },
+    {
+      "rule": "answer-in-passage",
+      "id": "known-in-passage",
+      "severity": "error",
+      "questionTypes": ["known"]
+    },
+    {
+      "rule": "answer-not-in-passage",
+      "id": "prior-knowledge-not-in-passage",
+      "severity": "error",
+      "questionTypes": ["prior-knowledge"]
+    },
+    {
+      "rule": "prompt-gives-answer",
+      "id": "semi-open-prompt",
+      "severity": "error",
+      "questionTypes": ["semi-open"]
+    },
+    {
+      "rule": "answer-reuse",
+      "id": "answer-reuse",
+      "questionTypes": ["known", "math", "semi-open"]
+    }
+  ]
+}
