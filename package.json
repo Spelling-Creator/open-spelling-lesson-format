@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "fmt": "prettier . --write"
+  },
+  "devDependencies": {
+    "@prettier/plugin-oxc": "^0.2.3",
+    "prettier": "^3.9.10"
+  }
+}

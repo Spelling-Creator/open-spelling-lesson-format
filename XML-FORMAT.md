@@ -188,53 +188,53 @@ Reading back into JSON: `question-types` on a rule always becomes an array, and 
 
 ### 8.1 Lessons
 
-| JSON | XML |
-|---|---|
-| `oslf` | the `version` attribute of `<lesson>` |
-| `title` | `<title>` |
-| `id`, `language`, `license`, `created`, `modified`, `ageRange` | attributes of `<lesson>` (`age-range`) |
-| `authors[]`, `{ name, url }` | `<author url?>` with the name as content |
-| `profiles[]` | `<profile ref="…"/>` elements |
-| `sources[]` | `<source id>` with `<title>`, `<author>`, `<publisher>`, `<year>`, `<url>` |
-| a section's `title`, `blocks` | `<section>`: a `<title>` child, then the blocks |
-| a block's `type` | the element's name |
-| a passage's `paragraphs[]` | `<p>` elements |
-| a spelling block's `words[]` | `<word>` elements |
-| image fields | `src`, `size`, `align`, `width`, `height` attributes; `<alt>`, `<caption>`, `<credit>` children |
-| credit `text`; `author`, `license`, `licenseUrl`, `sourceUrl` | `<credit>` content; its attributes |
-| `questionType` | the `type` attribute of `<question>` |
-| `answerKey`, `threeBoard`, `besides` | `answer-key`, `three-board`, `besides` attributes |
-| `answers[]` | `<answer>` elements |
-| `working[]` | `<step>` elements |
-| a VAKT block's `text`, `links[]`, `image` | `<text>`; `<link url>` with the label as content; `<image>` |
-| a text run's `bold`, `italic`, `underline` | `<b>`, `<i>`, `<u>` around the text |
-| a text run's `ipa` | `<phoneme alphabet="ipa" ph="…">`, innermost |
-| a note's `source`, `locator`, `text` | `<note source? locator?>` with the text as content |
-| a math run | `<m format display?>` with `<source>` and `<spoken>` |
-| a pause, `short` / `long` | `<break strength="medium"/>` / `<break strength="strong"/>` |
-| spoken text | the content of `<spoken>` |
-| `extensions` | elements and attributes from other namespaces |
+| JSON                                                           | XML                                                                                             |
+| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `oslf`                                                         | the `version` attribute of `<lesson>`                                                           |
+| `title`                                                        | `<title>`                                                                                       |
+| `id`, `language`, `license`, `created`, `modified`, `ageRange` | attributes of `<lesson>` (`age-range`)                                                          |
+| `authors[]`, `{ name, url }`                                   | `<author url?>` with the name as content                                                        |
+| `profiles[]`                                                   | `<profile ref="…"/>` elements                                                                   |
+| `sources[]`                                                    | `<source id>` with `<title>`, `<author>`, `<publisher>`, `<year>`, `<url>`                      |
+| a section's `title`, `blocks`                                  | `<section>`: a `<title>` child, then the blocks                                                 |
+| a block's `type`                                               | the element's name                                                                              |
+| a passage's `paragraphs[]`                                     | `<p>` elements                                                                                  |
+| a spelling block's `words[]`                                   | `<word>` elements                                                                               |
+| image fields                                                   | `src`, `size`, `align`, `width`, `height` attributes; `<alt>`, `<caption>`, `<credit>` children |
+| credit `text`; `author`, `license`, `licenseUrl`, `sourceUrl`  | `<credit>` content; its attributes                                                              |
+| `questionType`                                                 | the `type` attribute of `<question>`                                                            |
+| `answerKey`, `threeBoard`, `besides`                           | `answer-key`, `three-board`, `besides` attributes                                               |
+| `answers[]`                                                    | `<answer>` elements                                                                             |
+| `working[]`                                                    | `<step>` elements                                                                               |
+| a VAKT block's `text`, `links[]`, `image`                      | `<text>`; `<link url>` with the label as content; `<image>`                                     |
+| a text run's `bold`, `italic`, `underline`                     | `<b>`, `<i>`, `<u>` around the text                                                             |
+| a text run's `ipa`                                             | `<phoneme alphabet="ipa" ph="…">`, innermost                                                    |
+| a note's `source`, `locator`, `text`                           | `<note source? locator?>` with the text as content                                              |
+| a math run                                                     | `<m format display?>` with `<source>` and `<spoken>`                                            |
+| a pause, `short` / `long`                                      | `<break strength="medium"/>` / `<break strength="strong"/>`                                     |
+| spoken text                                                    | the content of `<spoken>`                                                                       |
+| `extensions`                                                   | elements and attributes from other namespaces                                                   |
 
 ### 8.2 Profiles
 
-| JSON | XML |
-|---|---|
-| `oslfProfile` | the `oslf-profile` attribute of `<profile>` |
-| `id`, `version`, `license` | attributes of `<profile>` |
-| `name` | `<name>` |
-| `description` | `<description>` |
-| `publisher`, `{ name, url }` | `<publisher url?>` with the name as content |
-| `rules[]` | `<rule>` elements |
-| a rule's `rule` | the `kind` attribute |
-| a rule's `id`, `severity` | attributes |
-| a rule's `description` | a `<description>` child |
-| `count`, `letters` ranges | `<count min? max?/>`, `<letters min? max?/>` children |
-| `questionTypes[]` | the `question-types` attribute, space separated |
-| `allowOther`, `uniqueInLesson` | `allow-other`, `unique-in-lesson` attributes |
-| `slots[]` | `<slot>` elements |
-| a slot's `block`, `questionType` | `block`, `question-type` attributes |
-| a slot's `count` | `min` and `max` attributes on the `<slot>` |
-| `extensions` | elements and attributes from other namespaces |
+| JSON                             | XML                                                   |
+| -------------------------------- | ----------------------------------------------------- |
+| `oslfProfile`                    | the `oslf-profile` attribute of `<profile>`           |
+| `id`, `version`, `license`       | attributes of `<profile>`                             |
+| `name`                           | `<name>`                                              |
+| `description`                    | `<description>`                                       |
+| `publisher`, `{ name, url }`     | `<publisher url?>` with the name as content           |
+| `rules[]`                        | `<rule>` elements                                     |
+| a rule's `rule`                  | the `kind` attribute                                  |
+| a rule's `id`, `severity`        | attributes                                            |
+| a rule's `description`           | a `<description>` child                               |
+| `count`, `letters` ranges        | `<count min? max?/>`, `<letters min? max?/>` children |
+| `questionTypes[]`                | the `question-types` attribute, space separated       |
+| `allowOther`, `uniqueInLesson`   | `allow-other`, `unique-in-lesson` attributes          |
+| `slots[]`                        | `<slot>` elements                                     |
+| a slot's `block`, `questionType` | `block`, `question-type` attributes                   |
+| a slot's `count`                 | `min` and `max` attributes on the `<slot>`            |
+| `extensions`                     | elements and attributes from other namespaces         |
 
 ## 9. Conformance
 

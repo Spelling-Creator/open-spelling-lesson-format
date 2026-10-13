@@ -178,7 +178,11 @@
           "type": "question",
           "questionType": "semi-open",
           "answerKey": "suggested",
-          "prompt": ["Give a word that means the same as ", { "text": "beam", "italic": true }, "."],
+          "prompt": [
+            "Give a word that means the same as ",
+            { "text": "beam", "italic": true },
+            "."
+          ],
           "answers": ["RAY", "SHAFT"]
         },
         {

@@ -52,13 +52,13 @@ Passages, questions and math working can include formulas. A formula can sit ins
 - **AsciiMath** is close to how you would type math in a plain message, and it's quick to learn. It is described at [asciimath.org](https://asciimath.org/).
 - **LaTeX** is what mathematicians and many math tools use.
 
-| To write | AsciiMath | LaTeX |
-|---|---|---|
-| times | `2 xx 8 = 16` | `2 \times 8 = 16` |
-| divided by | `48 -: 6 = 8` | `48 \div 6 = 8` |
-| a fraction | `3/4` | `\frac{3}{4}` |
-| a power | `10^6` | `10^6` |
-| a square root | `sqrt(81) = 9` | `\sqrt{81} = 9` |
+| To write           | AsciiMath          | LaTeX                  |
+| ------------------ | ------------------ | ---------------------- |
+| times              | `2 xx 8 = 16`      | `2 \times 8 = 16`      |
+| divided by         | `48 -: 6 = 8`      | `48 \div 6 = 8`        |
+| a fraction         | `3/4`              | `\frac{3}{4}`          |
+| a power            | `10^6`             | `10^6`                 |
+| a square root      | `sqrt(81) = 9`     | `\sqrt{81} = 9`        |
 | not equal, at most | `5 != 6`, `x <= 3` | `5 \neq 6`, `x \leq 3` |
 
 Some things to know:
@@ -98,16 +98,16 @@ When a key only gives examples, the printed lesson has to show that, so a spelle
 
 ### The eight types at a glance
 
-| Type | Where the answer comes from | Answer key |
-|---|---|---|
-| Known | the passage | complete |
-| Prior knowledge | what the speller already knows | complete |
-| Math | a number in the passage, or a calculation | complete, one answer |
-| Semi-open | a set of answers the lesson gives, usually a list in the passage | complete (examples allowed, provisionally) |
-| Tight open | the speller's everyday world, quickly | none, or examples |
-| Would you rather | the speller's own choice between options | none |
-| Paraphrase | the passage, retold in the speller's words | none |
-| Broad open | the speller's own reasoning, opinion or imagination | none |
+| Type             | Where the answer comes from                                      | Answer key                                 |
+| ---------------- | ---------------------------------------------------------------- | ------------------------------------------ |
+| Known            | the passage                                                      | complete                                   |
+| Prior knowledge  | what the speller already knows                                   | complete                                   |
+| Math             | a number in the passage, or a calculation                        | complete, one answer                       |
+| Semi-open        | a set of answers the lesson gives, usually a list in the passage | complete (examples allowed, provisionally) |
+| Tight open       | the speller's everyday world, quickly                            | none, or examples                          |
+| Would you rather | the speller's own choice between options                         | none                                       |
+| Paraphrase       | the passage, retold in the speller's words                       | none                                       |
+| Broad open       | the speller's own reasoning, opinion or imagination              | none                                       |
 
 ### The order of the types
 
@@ -122,6 +122,7 @@ The types are listed in the order a section asks them. Each one asks a little mo
 **Example.** "Alexandria's lighthouse stood on the island of ______." Key: PHAROS.
 
 **Writing one.**
+
 - Quoting a sentence from the passage with the answer blanked out works well.
 - Ask yourself whether a reasonable speller could give a different answer and be just as right. If they could, it isn't a known question.
 - Check that no other question in the section prints this answer in its prompt.
@@ -137,6 +138,7 @@ The types are listed in the order a section asks them. Each one asks a little mo
 **Example.** "On which continent is Egypt?" Key: AFRICA.
 
 **Writing one.**
+
 - Link it to the passage's topic, but make sure the passage doesn't contain the answer. If it does, it's a known question.
 - It has a right answer. A question with many right answers from everyday life is a tight open.
 
@@ -147,10 +149,12 @@ The types are listed in the order a section asks them. Each one asks a little mo
 **Answer key.** Complete, with one answer. The answer can carry a unit (360 STEPS). A word problem can also carry its **working**: the steps to the answer, in order, so the partner can follow the speller's thinking. Working can include [formulas](#formulas).
 
 **Examples.**
+
 - Fill-in-the-blank: "The lighthouse was built more than ______ years ago." Key: 2,200.
 - Word problem: "A keeper climbed the 120 steps to the lamp 3 times each night. How many steps was that each night?" Key: 360. Working: "Multiply the steps by the climbs:" and the formula `120 xx 3 = 360`.
 
 **Writing one.**
+
 - Match the math to the speller, not to an age or grade. Presume competence.
 - A word problem works best when it comes out of the section's own content.
 
@@ -163,6 +167,7 @@ The types are listed in the order a section asks them. Each one asks a little mo
 **Example.** "A fire at the top warned ships away from dangerous ______. Name one thing the ships had to avoid." Key: ROCKS, REEFS, SANDBARS.
 
 **Writing one.**
+
 - Plan the semi-opens before you write the passage, and write the list into it: two to four items of the same kind, ideally one word each.
 - Don't put the list in the prompt. "Ships avoided rocks, reefs and sandbars. Name one." hands the answer over.
 - If a semi-open feels forced, the passage usually needs a real list. Fix the passage rather than the question.
@@ -171,7 +176,7 @@ The types are listed in the order a section asks them. Each one asks a little mo
 
 **"Besides" line.** A follow-up printed under the question. It names one answer and asks for another: 'Besides "rocks"' asks for REEFS or SANDBARS.
 
-**Provisional: example keys.** Some designers ask semi-opens whose answers are bounded by the topic but aren't a list in the passage, such as "Give a word that means the same as *beam*." (RAY, SHAFT). This draft allows a semi-open with an example key for these, but whether they belong here is [open question 1](#open-questions).
+**Provisional: example keys.** Some designers ask semi-opens whose answers are bounded by the topic but aren't a list in the passage, such as "Give a word that means the same as _beam_." (RAY, SHAFT). This draft allows a semi-open with an example key for these, but whether they belong here is [open question 1](#open-questions).
 
 ### Tight open
 
@@ -182,6 +187,7 @@ The types are listed in the order a section asks them. Each one asks a little mo
 **Examples.** "Name something that gives off light." "Name something made of glass." (examples: WINDOW, BOTTLE, MIRROR)
 
 **Writing one.**
+
 - Name an everyday category that almost anyone can answer at once.
 - Link the category to the lesson's theme lightly, but don't make the answer depend on the passage.
 - Keep the load light. "Name a word that means very old" is a vocabulary puzzle, not a tight open.
@@ -195,6 +201,7 @@ The types are listed in the order a section asks them. Each one asks a little mo
 **Example.** "Would you rather keep a lighthouse on a lonely island or in a busy harbor?"
 
 **Writing one.**
+
 - Make every option appealing, or every option awful. A choice with an obvious winner asks nothing.
 - The options can use the lesson's vocabulary. That's a good way to give the speller a reason to use new words.
 
@@ -242,18 +249,18 @@ The question's own wording ("Would you rather...", "In your own words...") helps
 
 You don't have to use these. They are the defaults, so that lessons from different places look alike.
 
-| Type | Color | Tag | Legend name |
-|---|---|---|---|
-| Known | green `#2f9e44` | K | Known |
-| Prior knowledge | blue `#1c7ed6` | PK | Prior knowledge |
-| Math | purple `#7048e8` | M | Math |
-| Semi-open | amber `#d68f00` | SO | Semi-open |
-| Tight open | pink `#e64980` | TO | Tight open |
-| Would you rather | grape `#9c36b5` | WYR | W.Y.R. |
-| Paraphrase | brown `#a0522d` | P | Paraphrase |
-| Broad open | pink `#e64980` | BO | Broad open |
-| VAKT activity | red `#ee1111` | | (not in the legend) |
-| Spelling words | teal `#0c8599` | | (not in the legend) |
+| Type             | Color            | Tag | Legend name         |
+| ---------------- | ---------------- | --- | ------------------- |
+| Known            | green `#2f9e44`  | K   | Known               |
+| Prior knowledge  | blue `#1c7ed6`   | PK  | Prior knowledge     |
+| Math             | purple `#7048e8` | M   | Math                |
+| Semi-open        | amber `#d68f00`  | SO  | Semi-open           |
+| Tight open       | pink `#e64980`   | TO  | Tight open          |
+| Would you rather | grape `#9c36b5`  | WYR | W.Y.R.              |
+| Paraphrase       | brown `#a0522d`  | P   | Paraphrase          |
+| Broad open       | pink `#e64980`   | BO  | Broad open          |
+| VAKT activity    | red `#ee1111`    |     | (not in the legend) |
+| Spelling words   | teal `#0c8599`   |     | (not in the legend) |
 
 A printed legend should list the types in the same order a section asks them, which is the order of this table, and only the types the lesson uses.
 
@@ -297,7 +304,7 @@ Describe a section of yours the way the example does, from top to bottom, with a
 
 We need practitioners' answers to these before 1.0. Comments on anything else are welcome too.
 
-1. **Example keys on semi-opens.** Some designers ask questions like "Give a word that means the same as *beam*", whose answers are bounded by the topic without being a list in the passage. Should these be semi-opens with an example key, tight opens with an example key, or a type of their own? We haven't found a published description of this kind of question.
+1. **Example keys on semi-opens.** Some designers ask questions like "Give a word that means the same as _beam_", whose answers are bounded by the topic without being a list in the passage. Should these be semi-opens with an example key, tight opens with an example key, or a type of their own? We haven't found a published description of this kind of question.
 2. **Three-board mark.** If you mark questions "(3B)": what does it ask of the speller, and does it apply to types other than semi-open?
 3. **Tight and broad opens.** This draft separates them by how much they ask of the speller. Is that the line you draw, or is it answer length, or something else?
 4. **Choice questions.** Do you ask questions where the partner offers a few options and one of them is right? No type covers them yet.

@@ -26,26 +26,26 @@ A **producer** is software that writes OSLF files. A **consumer** is software th
 
 Each question type in [SPEC.md](SPEC.md#2-question-types) has a stable id, and each answer key kind ([SPEC.md, answer keys](SPEC.md#answer-keys)) has a stable value.
 
-| Id | Type | Default key | Other key allowed |
-|---|---|---|---|
-| `known` | Known | `exhaustive` | |
-| `prior-knowledge` | Prior knowledge | `exhaustive` | |
-| `math` | Math | `exhaustive` | |
-| `semi-open` | Semi-open | `exhaustive` | `suggested` (provisional) |
-| `tight-open` | Tight open | `none` | `suggested` |
-| `would-you-rather` | Would you rather | `none` | |
-| `paraphrase` | Paraphrase | `none` | |
-| `broad-open` | Broad open | `none` | |
+| Id                 | Type             | Default key  | Other key allowed         |
+| ------------------ | ---------------- | ------------ | ------------------------- |
+| `known`            | Known            | `exhaustive` |                           |
+| `prior-knowledge`  | Prior knowledge  | `exhaustive` |                           |
+| `math`             | Math             | `exhaustive` |                           |
+| `semi-open`        | Semi-open        | `exhaustive` | `suggested` (provisional) |
+| `tight-open`       | Tight open       | `none`       | `suggested`               |
+| `would-you-rather` | Would you rather | `none`       |                           |
+| `paraphrase`       | Paraphrase       | `none`       |                           |
+| `broad-open`       | Broad open       | `none`       |                           |
 
 The table is in the order a section asks the types ([SPEC.md](SPEC.md#the-order-of-the-types)). Renderers SHOULD list types in a printed legend in this order.
 
 The key values mean:
 
-| Value | Meaning |
-|---|---|
-| `exhaustive` | The key lists every accepted answer. |
-| `suggested` | The key lists example answers; other answers can be correct. |
-| `none` | There is no key. |
+| Value        | Meaning                                                      |
+| ------------ | ------------------------------------------------------------ |
+| `exhaustive` | The key lists every accepted answer.                         |
+| `suggested`  | The key lists example answers; other answers can be correct. |
+| `none`       | There is no key.                                             |
 
 ## 3. Lesson files
 
@@ -59,29 +59,29 @@ Fields marked REQUIRED below MUST be present. A producer MUST NOT write fields t
 
 ### 3.2 Lesson
 
-| Field | Type | Notes |
-|---|---|---|
-| `oslf` | string | REQUIRED. The OSLF version the file follows. For this draft, `"0.1"`. |
-| `title` | string | REQUIRED. |
-| `id` | string | OPTIONAL. A stable identifier for the lesson. A URI is RECOMMENDED. |
-| `language` | string | RECOMMENDED. A [BCP 47](https://www.rfc-editor.org/info/bcp47) tag such as `en` or `es-MX`. |
-| `authors` | array of Person | OPTIONAL. |
-| `license` | string | OPTIONAL. An [SPDX](https://spdx.org/licenses/) identifier such as `CC-BY-4.0`, or a URL. |
-| `created`, `modified` | string | OPTIONAL. Dates or date-times in [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339) form. |
-| `ageRange` | string | OPTIONAL. Free text, such as `"14-16 years"`. It describes who the content suits, not how hard the questions are. |
-| `profiles` | array of string | OPTIONAL. Ids of the profiles the author wrote the lesson against ([section 4](#4-profiles)). |
-| `sources` | array of Source | OPTIONAL. ([section 3.9](#39-sources)) |
-| `sections` | array of Section | REQUIRED. At least one. |
-| `extensions` | object | OPTIONAL. ([section 3.11](#311-extensions)) |
+| Field                 | Type             | Notes                                                                                                             |
+| --------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `oslf`                | string           | REQUIRED. The OSLF version the file follows. For this draft, `"0.1"`.                                             |
+| `title`               | string           | REQUIRED.                                                                                                         |
+| `id`                  | string           | OPTIONAL. A stable identifier for the lesson. A URI is RECOMMENDED.                                               |
+| `language`            | string           | RECOMMENDED. A [BCP 47](https://www.rfc-editor.org/info/bcp47) tag such as `en` or `es-MX`.                       |
+| `authors`             | array of Person  | OPTIONAL.                                                                                                         |
+| `license`             | string           | OPTIONAL. An [SPDX](https://spdx.org/licenses/) identifier such as `CC-BY-4.0`, or a URL.                         |
+| `created`, `modified` | string           | OPTIONAL. Dates or date-times in [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339) form.                         |
+| `ageRange`            | string           | OPTIONAL. Free text, such as `"14-16 years"`. It describes who the content suits, not how hard the questions are. |
+| `profiles`            | array of string  | OPTIONAL. Ids of the profiles the author wrote the lesson against ([section 4](#4-profiles)).                     |
+| `sources`             | array of Source  | OPTIONAL. ([section 3.9](#39-sources))                                                                            |
+| `sections`            | array of Section | REQUIRED. At least one.                                                                                           |
+| `extensions`          | object           | OPTIONAL. ([section 3.11](#311-extensions))                                                                       |
 
 A Person is an object with a REQUIRED `name` and an OPTIONAL `url`.
 
 ### 3.3 Sections and blocks
 
-| Field | Type | Notes |
-|---|---|---|
-| `id` | string | OPTIONAL. |
-| `title` | string | OPTIONAL. |
+| Field    | Type           | Notes                       |
+| -------- | -------------- | --------------------------- |
+| `id`     | string         | OPTIONAL.                   |
+| `title`  | string         | OPTIONAL.                   |
 | `blocks` | array of Block | REQUIRED. In reading order. |
 
 Every block is an object with a REQUIRED `type` (`passage`, `spelling`, `image`, `question`, `vakt` or `heading`) and an OPTIONAL `id`. Where `id` is present on a section or block, it MUST be unique within the lesson. Consumers that need ids MAY assign them to blocks that have none.
@@ -106,12 +106,12 @@ A math run puts a formula into rich text:
 { "math": { "format": "asciimath", "source": "120 xx 3 = 360" } }
 ```
 
-| Field | Type | Notes |
-|---|---|---|
-| `format` | string | REQUIRED. The notation `source` is written in: `"asciimath"` or `"tex"`. |
-| `source` | string | REQUIRED. The formula as the author wrote it, without delimiters. MUST NOT contain line breaks. |
-| `display` | boolean | OPTIONAL, default `false`. When `false`, the formula sits inside the sentence around it. When `true`, it is shown on its own line. |
-| `spoken` | spoken text | OPTIONAL. What read-aloud says for this formula, in place of speech generated from it. For when the generated speech is correct but awkward to hear, or says a word wrong. See [Spoken text](#spoken-text). |
+| Field     | Type        | Notes                                                                                                                                                                                                       |
+| --------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `format`  | string      | REQUIRED. The notation `source` is written in: `"asciimath"` or `"tex"`.                                                                                                                                    |
+| `source`  | string      | REQUIRED. The formula as the author wrote it, without delimiters. MUST NOT contain line breaks.                                                                                                             |
+| `display` | boolean     | OPTIONAL, default `false`. When `false`, the formula sits inside the sentence around it. When `true`, it is shown on its own line.                                                                          |
+| `spoken`  | spoken text | OPTIONAL. What read-aloud says for this formula, in place of speech generated from it. For when the generated speech is correct but awkward to hear, or says a word wrong. See [Spoken text](#spoken-text). |
 
 The two formats are:
 
@@ -143,16 +143,16 @@ Two rules for consumers:
 
 ### 3.6 Questions
 
-| Field | Type | Notes |
-|---|---|---|
-| `type` | `"question"` | REQUIRED. |
-| `questionType` | string | REQUIRED. An id from [section 2](#2-question-type-ids). |
-| `prompt` | rich text | REQUIRED. |
-| `answerKey` | string | OPTIONAL. When absent, the type's default applies. When present, it MUST be a kind the type allows. |
-| `answers` | array of string | REQUIRED when the key is `exhaustive` or `suggested`, and MUST be absent when it is `none`. `known` and `math` keys MUST hold at least one answer, and a `math` key MUST hold exactly one. |
-| `working` | array of rich text | OPTIONAL. `math` only. The steps to the answer, in order, one step per item. |
-| `threeBoard` | boolean | OPTIONAL. `semi-open` only. |
-| `besides` | string | OPTIONAL. `semi-open` with an `exhaustive` key only. MUST match one of `answers`, ignoring case. |
+| Field          | Type               | Notes                                                                                                                                                                                      |
+| -------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `type`         | `"question"`       | REQUIRED.                                                                                                                                                                                  |
+| `questionType` | string             | REQUIRED. An id from [section 2](#2-question-type-ids).                                                                                                                                    |
+| `prompt`       | rich text          | REQUIRED.                                                                                                                                                                                  |
+| `answerKey`    | string             | OPTIONAL. When absent, the type's default applies. When present, it MUST be a kind the type allows.                                                                                        |
+| `answers`      | array of string    | REQUIRED when the key is `exhaustive` or `suggested`, and MUST be absent when it is `none`. `known` and `math` keys MUST hold at least one answer, and a `math` key MUST hold exactly one. |
+| `working`      | array of rich text | OPTIONAL. `math` only. The steps to the answer, in order, one step per item.                                                                                                               |
+| `threeBoard`   | boolean            | OPTIONAL. `semi-open` only.                                                                                                                                                                |
+| `besides`      | string             | OPTIONAL. `semi-open` with an `exhaustive` key only. MUST match one of `answers`, ignoring case.                                                                                           |
 
 Answers MUST be compared without regard to case.
 
@@ -172,15 +172,15 @@ A consumer that meets a `questionType` it does not know MUST NOT drop the questi
 
 ### 3.8 Images
 
-| Field | Type | Notes |
-|---|---|---|
-| `src` | string | REQUIRED. An `https` URL, a `data:` URL holding the image, or a relative reference resolved against the lesson file's own location. |
-| `alt` | string | RECOMMENDED. |
-| `caption` | rich text | OPTIONAL. MUST NOT hold the credit. |
-| `credit` | Credit | OPTIONAL, and REQUIRED when the image's license asks for attribution. |
-| `width`, `height` | integer | OPTIONAL. Pixel size of the image. |
-| `size` | string | OPTIONAL. `small`, `medium`, `large` or `full`. |
-| `align` | string | OPTIONAL. `left`, `center` or `right`. |
+| Field             | Type      | Notes                                                                                                                               |
+| ----------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `src`             | string    | REQUIRED. An `https` URL, a `data:` URL holding the image, or a relative reference resolved against the lesson file's own location. |
+| `alt`             | string    | RECOMMENDED.                                                                                                                        |
+| `caption`         | rich text | OPTIONAL. MUST NOT hold the credit.                                                                                                 |
+| `credit`          | Credit    | OPTIONAL, and REQUIRED when the image's license asks for attribution.                                                               |
+| `width`, `height` | integer   | OPTIONAL. Pixel size of the image.                                                                                                  |
+| `size`            | string    | OPTIONAL. `small`, `medium`, `large` or `full`.                                                                                     |
+| `align`           | string    | OPTIONAL. `left`, `center` or `right`.                                                                                              |
 
 A Credit is an object with OPTIONAL `text` (the credit line as printed), `author`, `license` (an SPDX identifier or URL), `licenseUrl` and `sourceUrl`. At least one field MUST be present. When `text` is absent, a consumer builds a credit line from the other fields.
 
@@ -208,17 +208,17 @@ A profile is the file form of a lesson shape ([SPEC.md, part 4](SPEC.md#4-lesson
 
 ### 4.1 Profile files
 
-| Field | Type | Notes |
-|---|---|---|
-| `oslfProfile` | string | REQUIRED. The OSLF version, `"0.1"`. |
-| `id` | string | REQUIRED. A URI that identifies the profile. Lessons refer to profiles by this id. |
-| `name` | string | REQUIRED. |
-| `version` | string | OPTIONAL. The profile's own version. |
-| `description` | string | OPTIONAL. |
-| `publisher` | Person | OPTIONAL. |
-| `license` | string | OPTIONAL. |
-| `rules` | array of Rule | REQUIRED. |
-| `extensions` | object | OPTIONAL. As in [section 3.11](#311-extensions). |
+| Field         | Type          | Notes                                                                              |
+| ------------- | ------------- | ---------------------------------------------------------------------------------- |
+| `oslfProfile` | string        | REQUIRED. The OSLF version, `"0.1"`.                                               |
+| `id`          | string        | REQUIRED. A URI that identifies the profile. Lessons refer to profiles by this id. |
+| `name`        | string        | REQUIRED.                                                                          |
+| `version`     | string        | OPTIONAL. The profile's own version.                                               |
+| `description` | string        | OPTIONAL.                                                                          |
+| `publisher`   | Person        | OPTIONAL.                                                                          |
+| `license`     | string        | OPTIONAL.                                                                          |
+| `rules`       | array of Rule | REQUIRED.                                                                          |
+| `extensions`  | object        | OPTIONAL. As in [section 3.11](#311-extensions).                                   |
 
 ### 4.2 Rules
 
@@ -226,15 +226,15 @@ Every rule has a REQUIRED `rule` (its kind), an OPTIONAL `id` that names it in m
 
 Ranges are written `{ "min": n, "max": n }`, and either bound MAY be left out.
 
-| Rule | Fields | A lesson breaks it when |
-|---|---|---|
-| `section-count` | `count`: range | the number of sections is out of range. |
-| `section-shape` | `slots`: array of Slot; `allowOther`: boolean, default `false` | a section's blocks do not match the slots in order ([section 4.3](#43-section-shape)). |
-| `spelling-words` | `count`: range; `letters`: range; `uniqueInLesson`: boolean | a spelling block has a number of words out of range, a word has a number of letters out of range, or (when `uniqueInLesson` is true) a word repeats in another section. |
-| `answer-in-passage` | `questionTypes`: array | an answer to a question of one of those types does not appear, word for word and ignoring case, in a passage of the same section. |
-| `answer-not-in-passage` | `questionTypes`: array | an answer to a question of one of those types does appear in a passage of the same section. |
-| `answer-reuse` | `questionTypes`: array, default all | the same answer is used by two questions of those types anywhere in the lesson. |
-| `prompt-gives-answer` | `questionTypes`: array | a question's prompt contains one of its own answers. |
+| Rule                    | Fields                                                         | A lesson breaks it when                                                                                                                                                 |
+| ----------------------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `section-count`         | `count`: range                                                 | the number of sections is out of range.                                                                                                                                 |
+| `section-shape`         | `slots`: array of Slot; `allowOther`: boolean, default `false` | a section's blocks do not match the slots in order ([section 4.3](#43-section-shape)).                                                                                  |
+| `spelling-words`        | `count`: range; `letters`: range; `uniqueInLesson`: boolean    | a spelling block has a number of words out of range, a word has a number of letters out of range, or (when `uniqueInLesson` is true) a word repeats in another section. |
+| `answer-in-passage`     | `questionTypes`: array                                         | an answer to a question of one of those types does not appear, word for word and ignoring case, in a passage of the same section.                                       |
+| `answer-not-in-passage` | `questionTypes`: array                                         | an answer to a question of one of those types does appear in a passage of the same section.                                                                             |
+| `answer-reuse`          | `questionTypes`: array, default all                            | the same answer is used by two questions of those types anywhere in the lesson.                                                                                         |
+| `prompt-gives-answer`   | `questionTypes`: array                                         | a question's prompt contains one of its own answers.                                                                                                                    |
 
 The rules that look at answers only look at `exhaustive` answer keys. Suggested answers are examples, so they are never held to a rule.
 
@@ -289,22 +289,22 @@ Open questions about the question types themselves are in [SPEC.md](SPEC.md#open
 
 ## Appendix A: Converting Spelling Creator files
 
-*Informative.* Spelling Creator lesson files (`"format": "spelling-creator-lesson"`, `"version": 1`) convert as follows.
+_Informative._ Spelling Creator lesson files (`"format": "spelling-creator-lesson"`, `"version": 1`) convert as follows.
 
-| Spelling Creator | OSLF |
-|---|---|
-| `doc.title`, `doc.ageRange`, `doc.sources` | `title`, `ageRange`, `sources` |
-| section `name` | section `title` |
-| `text` block | `passage`, one paragraph per line of `text`, or per paragraph of `content` |
-| footnote `{ sourceId, locator, note }` | note `{ source, locator, text }` |
-| `spelling` block, `words[].text` | `spelling`, `words` |
-| `image` block | `image`; `caption` and `credit` (as `credit.text`) |
-| `vakt` block | `vakt`; `links[]` without their ids |
-| question `single` | `known`, `answers: [answer]` |
-| question `background` | `prior-knowledge`, `answers: [answer]` |
-| question `number` | `math`, `answers: [answer]`, `steps[].text` as `working` |
-| question `multiple` | `semi-open` |
-| question `multiple_open` | `semi-open` with `answerKey: "suggested"` |
-| question `open` | `tight-open` or `broad-open`. The file does not say which, so a converter has to decide from the wording or ask the author. |
-| question `paraphrase` | `paraphrase` |
-| question `wyr` | `would-you-rather` |
+| Spelling Creator                           | OSLF                                                                                                                        |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| `doc.title`, `doc.ageRange`, `doc.sources` | `title`, `ageRange`, `sources`                                                                                              |
+| section `name`                             | section `title`                                                                                                             |
+| `text` block                               | `passage`, one paragraph per line of `text`, or per paragraph of `content`                                                  |
+| footnote `{ sourceId, locator, note }`     | note `{ source, locator, text }`                                                                                            |
+| `spelling` block, `words[].text`           | `spelling`, `words`                                                                                                         |
+| `image` block                              | `image`; `caption` and `credit` (as `credit.text`)                                                                          |
+| `vakt` block                               | `vakt`; `links[]` without their ids                                                                                         |
+| question `single`                          | `known`, `answers: [answer]`                                                                                                |
+| question `background`                      | `prior-knowledge`, `answers: [answer]`                                                                                      |
+| question `number`                          | `math`, `answers: [answer]`, `steps[].text` as `working`                                                                    |
+| question `multiple`                        | `semi-open`                                                                                                                 |
+| question `multiple_open`                   | `semi-open` with `answerKey: "suggested"`                                                                                   |
+| question `open`                            | `tight-open` or `broad-open`. The file does not say which, so a converter has to decide from the wording or ask the author. |
+| question `paraphrase`                      | `paraphrase`                                                                                                                |
+| question `wyr`                             | `would-you-rather`                                                                                                          |

@@ -96,7 +96,11 @@
           "then": {
             "required": ["slots"],
             "properties": {
-              "slots": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/slot" } },
+              "slots": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "$ref": "#/$defs/slot" }
+              },
               "allowOther": { "type": "boolean" }
             }
           }
@@ -115,19 +119,27 @@
           "if": {
             "properties": {
               "rule": {
-                "enum": ["answer-in-passage", "answer-not-in-passage", "prompt-gives-answer"]
+                "enum": [
+                  "answer-in-passage",
+                  "answer-not-in-passage",
+                  "prompt-gives-answer"
+                ]
               }
             }
           },
           "then": {
             "required": ["questionTypes"],
-            "properties": { "questionTypes": { "$ref": "#/$defs/questionTypes" } }
+            "properties": {
+              "questionTypes": { "$ref": "#/$defs/questionTypes" }
+            }
           }
         },
         {
           "if": { "properties": { "rule": { "const": "answer-reuse" } } },
           "then": {
-            "properties": { "questionTypes": { "$ref": "#/$defs/questionTypes" } }
+            "properties": {
+              "questionTypes": { "$ref": "#/$defs/questionTypes" }
+            }
           }
         }
       ]

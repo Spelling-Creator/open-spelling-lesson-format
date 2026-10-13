@@ -102,7 +102,10 @@
               "additionalProperties": false,
               "anyOf": [{ "required": ["source"] }, { "required": ["text"] }],
               "properties": {
-                "source": { "type": "string", "pattern": "^[A-Za-z0-9_-]{1,64}$" },
+                "source": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_-]{1,64}$"
+                },
                 "locator": { "$ref": "#/$defs/oneLine" },
                 "text": { "$ref": "#/$defs/oneLine" }
               }
@@ -156,7 +159,14 @@
       "required": ["type"],
       "properties": {
         "type": {
-          "enum": ["passage", "spelling", "image", "question", "vakt", "heading"]
+          "enum": [
+            "passage",
+            "spelling",
+            "image",
+            "question",
+            "vakt",
+            "heading"
+          ]
         }
       },
       "oneOf": [
@@ -348,7 +358,12 @@
         {
           "if": { "properties": { "questionType": { "const": "semi-open" } } },
           "else": {
-            "not": { "anyOf": [{ "required": ["threeBoard"] }, { "required": ["besides"] }] }
+            "not": {
+              "anyOf": [
+                { "required": ["threeBoard"] },
+                { "required": ["besides"] }
+              ]
+            }
           }
         },
         {
@@ -368,7 +383,9 @@
           "then": { "properties": { "answers": { "maxItems": 1 } } }
         },
         {
-          "if": { "properties": { "questionType": { "const": "prior-knowledge" } } },
+          "if": {
+            "properties": { "questionType": { "const": "prior-knowledge" } }
+          },
           "then": {
             "required": ["answers"],
             "properties": { "answerKey": { "const": "exhaustive" } }
@@ -407,7 +424,9 @@
         {
           "if": {
             "properties": {
-              "questionType": { "enum": ["would-you-rather", "paraphrase", "broad-open"] }
+              "questionType": {
+                "enum": ["would-you-rather", "paraphrase", "broad-open"]
+              }
             }
           },
           "then": {

@@ -16,19 +16,19 @@ Lessons for spellers share a vocabulary: known questions, semi-opens, tight and 
 
 ## Files
 
-| Path | What it is |
-|---|---|
-| [SPEC.md](SPEC.md) | The standard, for lesson designers. |
-| [FILE-FORMAT.md](FILE-FORMAT.md) | The data model and JSON form, for tool builders. |
-| [XML-FORMAT.md](XML-FORMAT.md) | The XML form of lessons and profiles. |
-| [schema/lesson.schema.json](schema/lesson.schema.json) | JSON Schema for lesson files. |
-| [schema/lesson.xsd](schema/lesson.xsd) | XML Schema for lesson files. |
-| [schema/profile.schema.json](schema/profile.schema.json) | JSON Schema for profiles. |
-| [schema/profile.xsd](schema/profile.xsd) | XML Schema for profiles. |
-| [examples/lighthouses.oslf.json](examples/lighthouses.oslf.json) | An example lesson. |
-| [examples/lighthouses.oslf.xml](examples/lighthouses.oslf.xml) | The same lesson, as XML. |
-| [examples/six-section.profile.json](examples/six-section.profile.json) | An example lesson shape, as a profile. |
-| [examples/six-section.profile.xml](examples/six-section.profile.xml) | The same profile, as XML. |
+| Path                                                                   | What it is                                       |
+| ---------------------------------------------------------------------- | ------------------------------------------------ |
+| [SPEC.md](SPEC.md)                                                     | The standard, for lesson designers.              |
+| [FILE-FORMAT.md](FILE-FORMAT.md)                                       | The data model and JSON form, for tool builders. |
+| [XML-FORMAT.md](XML-FORMAT.md)                                         | The XML form of lessons and profiles.            |
+| [schema/lesson.schema.json](schema/lesson.schema.json)                 | JSON Schema for lesson files.                    |
+| [schema/lesson.xsd](schema/lesson.xsd)                                 | XML Schema for lesson files.                     |
+| [schema/profile.schema.json](schema/profile.schema.json)               | JSON Schema for profiles.                        |
+| [schema/profile.xsd](schema/profile.xsd)                               | XML Schema for profiles.                         |
+| [examples/lighthouses.oslf.json](examples/lighthouses.oslf.json)       | An example lesson.                               |
+| [examples/lighthouses.oslf.xml](examples/lighthouses.oslf.xml)         | The same lesson, as XML.                         |
+| [examples/six-section.profile.json](examples/six-section.profile.json) | An example lesson shape, as a profile.           |
+| [examples/six-section.profile.xml](examples/six-section.profile.xml)   | The same profile, as XML.                        |
 
 ## Principles
 
@@ -40,9 +40,9 @@ Lessons for spellers share a vocabulary: known questions, semi-opens, tight and 
 
 Copyright (c) 2026, playforge-coding.
 
-| Files | License |
-|---|---|
+| Files                                                                                                        | License                                                                              |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | [SPEC.md](SPEC.md), [FILE-FORMAT.md](FILE-FORMAT.md), [XML-FORMAT.md](XML-FORMAT.md), [README.md](README.md) | [Creative Commons Attribution 4.0 International](LICENSES/CC-BY-4.0.txt) (CC BY 4.0) |
-| [schema/](schema/), [examples/](examples/) | [BSD 3-Clause](LICENSES/BSD-3-Clause.txt) |
+| [schema/](schema/), [examples/](examples/)                                                                   | [BSD 3-Clause](LICENSES/BSD-3-Clause.txt)                                            |
 
 The schemas and examples use a code license so that tools can copy them into their own source code and tests on the same terms as other code.
