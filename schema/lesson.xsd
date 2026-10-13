@@ -85,6 +85,22 @@
     </xs:simpleContent>
   </xs:complexType>
 
+  <xs:complexType name="sub">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="alias" use="required" type="o:nonEmpty"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="sayAs">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="interpret-as" use="required" fixed="characters" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
   <xs:complexType name="break">
     <xs:attribute name="strength" use="required" type="o:breakStrength"/>
   </xs:complexType>
@@ -92,6 +108,8 @@
   <xs:complexType name="spokenText" mixed="true">
     <xs:choice minOccurs="0" maxOccurs="unbounded">
       <xs:element name="phoneme" type="o:phoneme"/>
+      <xs:element name="sub" type="o:sub"/>
+      <xs:element name="say-as" type="o:sayAs"/>
       <xs:element name="break" type="o:break"/>
     </xs:choice>
   </xs:complexType>
@@ -104,6 +122,8 @@
       <xs:element name="i" type="o:markContent"/>
       <xs:element name="u" type="o:markContent"/>
       <xs:element name="phoneme" type="o:phoneme"/>
+      <xs:element name="sub" type="o:sub"/>
+      <xs:element name="say-as" type="o:sayAs"/>
     </xs:choice>
   </xs:complexType>
 
@@ -131,6 +151,8 @@
       <xs:element name="i" type="o:markContent"/>
       <xs:element name="u" type="o:markContent"/>
       <xs:element name="phoneme" type="o:phoneme"/>
+      <xs:element name="sub" type="o:sub"/>
+      <xs:element name="say-as" type="o:sayAs"/>
       <xs:element name="note" type="o:note"/>
       <xs:element name="m" type="o:math"/>
       <xs:element name="break" type="o:break"/>

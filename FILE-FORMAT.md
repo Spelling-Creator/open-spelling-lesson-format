@@ -91,7 +91,7 @@ Every block is an object with a REQUIRED `type` (`passage`, `spelling`, `image`,
 Passages, prompts, math working, captions and headings hold **rich text**: either a plain string, or an array of runs. A run is one of:
 
 - a string: plain text.
-- a text run: `{ "text": "...", "italic": true }`, where `bold`, `italic` and `underline` are OPTIONAL booleans. An OPTIONAL `ipa` fixes how read-aloud says the run's text, with the same meaning as a pronunciation in spoken text ([Spoken text](#spoken-text)); the run displays as its `text` either way.
+- a text run: `{ "text": "...", "italic": true }`, where `bold`, `italic` and `underline` are OPTIONAL booleans. An OPTIONAL `ipa`, `alias` or `sayAs` (at most one of the three) fixes how read-aloud says the run's text, with the same meaning as a pronunciation, substitution or spell-out in spoken text ([Spoken text](#spoken-text)); the run displays as its `text` either way.
 - a note: `{ "note": { "source": "...", "locator": "...", "text": "..." } }`. A footnote at this point in the text. `source` is the id of one of the lesson's sources, `locator` is a page or section within it such as `"p. 12"`, and `text` is a free-text note. At least one of `source` and `text` MUST be present. Notes are numbered in reading order across the whole lesson.
 - a math run: `{ "math": { ... } }`. A formula ([section 3.5](#35-math)).
 - a pause run: `{ "pause": "short" }` or `{ "pause": "long" }`. A pause in read-aloud, with the same meaning as a pause in spoken text ([Spoken text](#spoken-text)). It displays as nothing.
@@ -130,15 +130,17 @@ Spoken text is a plain string, or an array of runs for the few things plain word
 
 - a string: words to say.
 - a pronunciation: `{ "text": "buoy", "ipa": "ˈbuːi" }`. The words in `text`, said the way `ipa` gives them in the [International Phonetic Alphabet](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet). A consumer whose speech engine cannot take IPA MUST say `text` unchanged instead.
+- a substitution: `{ "text": "WWF", "alias": "World Wide Fund for Nature" }`. The run reads as `text` but is said as `alias`: plain words any engine can say.
+- a spell-out: `{ "text": "REEF", "sayAs": "characters" }`. The characters of `text`, said one by one ("R, E, E, F"). `"characters"` is the only value `sayAs` takes.
 - a pause: `{ "pause": "short" }` (about what a comma gives) or `{ "pause": "long" }` (clearly longer).
 
-These runs are a deliberately small subset of [SSML](https://www.w3.org/TR/speech-synthesis11/): a pronunciation corresponds to SSML's `<phoneme alphabet="ipa">` and a pause to its `<break>`, and the [XML form](XML-FORMAT.md) writes them as exactly those elements. No other part of SSML is in OSLF, and `<audio>` is left out on purpose: speech never fetches anything ([section 7](#7-security-and-privacy)).
+These runs are a deliberately small subset of [SSML](https://www.w3.org/TR/speech-synthesis11/): a pronunciation corresponds to SSML's `<phoneme alphabet="ipa">`, a substitution to its `<sub alias>`, a spell-out to its `<say-as interpret-as="characters">` and a pause to its `<break>`, and the [XML form](XML-FORMAT.md) writes them as exactly those elements. No other part of SSML is in OSLF, and `<audio>` is left out on purpose: speech never fetches anything ([section 7](#7-security-and-privacy)).
 
-The same two abilities are not confined to spoken text: in rich text, a text run MAY carry `ipa` and a pause run MAY appear anywhere ([section 3.4](#34-rich-text)), so a passage can fix how read-aloud says a name.
+None of these abilities is confined to spoken text: in rich text, a text run MAY carry `ipa`, `alias` or `sayAs` (at most one of the three) and a pause run MAY appear anywhere ([section 3.4](#34-rich-text)), so a passage can fix how read-aloud says a name or spell a word out.
 
 Two rules for consumers:
 
-- Shown rather than spoken (a transcript, a tooltip), spoken text reads as its words: each string, each pronunciation's `text`, and nothing for a pause.
+- Shown rather than spoken (a transcript, a tooltip), spoken text reads as its words: each string, each run's `text`, and nothing for a pause.
 - A consumer that meets a run object it does not recognize MUST say its `text` where it has one, otherwise skip it, and SHOULD keep the run unchanged when saving.
 
 ### 3.6 Questions

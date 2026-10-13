@@ -49,7 +49,7 @@ The exceptions are few and listed in [section 8](#8-correspondence-with-the-json
 
 XML whitespace means space, tab, carriage return and line feed. U+00A0, the no-break space, is not whitespace and always survives.
 
-- In an element that holds text or rich text (`title`, `p`, `prompt`, `heading`, `caption`, `alt`, `step`, `spoken`, `word`, `answer`, `text`, `link`, `note`, `phoneme`, `source`, `credit`, the fields of a bibliography `<source>`, and a profile's `name`, `description` and `publisher`), each run of whitespace reads as one space, and whitespace at the very start and end of the element's content is dropped. A paragraph can therefore wrap across lines in the file and still read as one line of text.
+- In an element that holds text or rich text (`title`, `p`, `prompt`, `heading`, `caption`, `alt`, `step`, `spoken`, `word`, `answer`, `text`, `link`, `note`, `phoneme`, `sub`, `say-as`, `source`, `credit`, the fields of a bibliography `<source>`, and a profile's `name`, `description` and `publisher`), each run of whitespace reads as one space, and whitespace at the very start and end of the element's content is dropped. A paragraph can therefore wrap across lines in the file and still read as one line of text.
 - In an element that holds only other elements (`lesson`, `section`, `passage`, `spelling`, `image`, `question`, `vakt`, `m`, `profile`, `rule`), whitespace between children is ignored.
 
 Because runs of whitespace collapse, two texts that differ only in the width of their whitespace are the same text. Converting a lesson between JSON and XML preserves everything else exactly.
@@ -123,11 +123,13 @@ Inside `<p>`, `<prompt>`, `<heading>`, `<caption>` and `<step>`, text mixes with
 
 - **Formatting**: `<b>`, `<i>` and `<u>`.
 - **A pronunciation**: `<phoneme alphabet="ipa" ph="freɪˈnɛl">FRESNEL</phoneme>`. This is a text run with `ipa`: it displays as its content and is said as `ph` gives it. `alphabet` is REQUIRED and always `ipa`.
+- **A substitution**: `<sub alias="World Wide Fund for Nature">WWF</sub>`. A text run with `alias`: it displays as its content and is said as `alias` gives it. `alias` is REQUIRED.
+- **A spell-out**: `<say-as interpret-as="characters">REEF</say-as>`. A text run with `sayAs`: it displays as its content, said one character at a time. `interpret-as` is REQUIRED and always `characters`.
 - **A note**: `<note source="lighthouse" locator="p. 12">free text</note>`. Both attributes and the content are OPTIONAL, but a note needs `source` or content.
 - **A formula**: `<m>` ([section 5.1](#51-formulas)).
 - **A pause**: `<break strength="medium"/>` or `<break strength="strong"/>` ([section 6](#6-speech-and-ssml)).
 
-A text run's marks wrap its text with `<b>` outermost, then `<i>`, then `<u>`, and the `<phoneme>` innermost, holding only text. A producer MUST write that order; a consumer MUST accept any nesting of these elements and read off the set of marks it finds.
+A text run's marks wrap its text with `<b>` outermost, then `<i>`, then `<u>`, and one of `<phoneme>`, `<sub>` or `<say-as>` innermost, holding only text (a run carries at most one of the three). A producer MUST write that order; a consumer MUST accept any nesting of these elements and read off the set of marks it finds.
 
 ### 5.1 Formulas
 
@@ -140,13 +142,13 @@ A text run's marks wrap its text with `<b>` outermost, then `<i>`, then `<u>`, a
 </m>
 ```
 
-`<m>` carries `format` (REQUIRED, `asciimath` or `tex`) and `display` (OPTIONAL boolean, default `false`). Its REQUIRED `<source>` child holds the formula's source without delimiters, and its OPTIONAL `<spoken>` child holds the spoken text: plain words mixed with `<phoneme>` and `<break>` elements. Note that whitespace around a `<break>` inside `<spoken>` is content ([section 3.3](#33-whitespace)): write `5<break strength="medium"/>is` rather than spacing it out, unless the spaces are meant.
+`<m>` carries `format` (REQUIRED, `asciimath` or `tex`) and `display` (OPTIONAL boolean, default `false`). Its REQUIRED `<source>` child holds the formula's source without delimiters, and its OPTIONAL `<spoken>` child holds the spoken text: plain words mixed with `<phoneme>`, `<sub>`, `<say-as>` and `<break>` elements ([section 6](#6-speech-and-ssml)). Note that whitespace around a `<break>` inside `<spoken>` is content ([section 3.3](#33-whitespace)): write `5<break strength="medium"/>is` rather than spacing it out, unless the spaces are meant.
 
 ## 6. Speech and SSML
 
-`<phoneme>` and `<break>` have the form of [SSML](https://www.w3.org/TR/speech-synthesis11/)'s elements of the same names, but they live in the OSLF namespace so that a lesson file needs only one. To hand spoken text to an SSML engine, wrap it in `<speak>`, move the elements to the SSML namespace, and escape every text node so author text cannot act as markup ([FILE-FORMAT.md section 7](FILE-FORMAT.md#7-security-and-privacy)).
+`<phoneme>`, `<sub>`, `<say-as>` and `<break>` have the form of [SSML](https://www.w3.org/TR/speech-synthesis11/)'s elements of the same names, but they live in the OSLF namespace so that a lesson file needs only one. To hand spoken text to an SSML engine, wrap it in `<speak>`, move the elements to the SSML namespace, and escape every text node so author text cannot act as markup ([FILE-FORMAT.md section 7](FILE-FORMAT.md#7-security-and-privacy)).
 
-`strength` takes exactly two values, and they correspond to the JSON pauses: `medium` is the JSON `short`, `strong` is the JSON `long`. No other SSML strength is valid OSLF, and no other part of SSML is.
+`strength` takes exactly two values, and they correspond to the JSON pauses: `medium` is the JSON `short`, `strong` is the JSON `long`. No other SSML strength or `interpret-as` is valid OSLF, and no other part of SSML is.
 
 ## 7. Profiles
 
@@ -209,6 +211,8 @@ Reading back into JSON: `question-types` on a rule always becomes an array, and 
 | a VAKT block's `text`, `links[]`, `image`                      | `<text>`; `<link url>` with the label as content; `<image>`                                     |
 | a text run's `bold`, `italic`, `underline`                     | `<b>`, `<i>`, `<u>` around the text                                                             |
 | a text run's `ipa`                                             | `<phoneme alphabet="ipa" ph="…">`, innermost                                                    |
+| a text run's `alias`                                           | `<sub alias="…">`, innermost                                                                    |
+| a text run's `sayAs`                                           | `<say-as interpret-as="characters">`, innermost                                                 |
 | a note's `source`, `locator`, `text`                           | `<note source? locator?>` with the text as content                                              |
 | a math run                                                     | `<m format display?>` with `<source>` and `<spoken>`                                            |
 | a pause, `short` / `long`                                      | `<break strength="medium"/>` / `<break strength="strong"/>`                                     |

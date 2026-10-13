@@ -201,6 +201,14 @@ suite("rich text runs", () => {
 
   valid("a text run with ipa", passage({ text: "FRESNEL", ipa: "freɪˈnɛl" }));
   valid(
+    "a text run with an alias",
+    passage({ text: "WWF", alias: "World Wide Fund for Nature" }),
+  );
+  valid(
+    "a text run spelled out, with marks",
+    passage("Spell ", { text: "REEF", sayAs: "characters", bold: true }, "."),
+  );
+  valid(
     "a note with a source",
     passage("Text.", { note: { source: "lighthouse" } }),
   );
@@ -224,6 +232,26 @@ suite("rich text runs", () => {
   invalid(
     "a text run with an unknown mark",
     passage({ text: "x", strike: true }),
+  );
+  invalid(
+    "a text run with an empty alias",
+    passage({ text: "WWF", alias: "" }),
+  );
+  invalid(
+    "a text run with another sayAs value",
+    passage({ text: "360", sayAs: "digits" }),
+  );
+  invalid(
+    "a text run with ipa and alias",
+    passage({ text: "x", ipa: "x", alias: "y" }),
+  );
+  invalid(
+    "a text run with ipa and sayAs",
+    passage({ text: "x", ipa: "x", sayAs: "characters" }),
+  );
+  invalid(
+    "a text run with alias and sayAs",
+    passage({ text: "x", alias: "y", sayAs: "characters" }),
   );
   invalid("a note with only a locator", passage({ note: { locator: "p. 1" } }));
   invalid("a note with a bad source id", passage({ note: { source: "a b" } }));
@@ -266,6 +294,22 @@ suite("math runs", () => {
       ],
     }),
   );
+  valid(
+    "a substitution run",
+    mathParagraph({
+      format: "tex",
+      source: "x",
+      spoken: [{ text: "WWF", alias: "World Wide Fund for Nature" }],
+    }),
+  );
+  valid(
+    "a spell-out run",
+    mathParagraph({
+      format: "tex",
+      source: "x",
+      spoken: ["Spell it: ", { text: "REEF", sayAs: "characters" }],
+    }),
+  );
   invalid("a formula without a format", mathParagraph({ source: "1 + 1" }));
   invalid("a formula without a source", mathParagraph({ format: "tex" }));
   invalid(
@@ -306,6 +350,42 @@ suite("math runs", () => {
       format: "tex",
       source: "x",
       spoken: [{ text: "x", ipa: "x", bold: true }],
+    }),
+  );
+  invalid(
+    "a substitution without text",
+    mathParagraph({ format: "tex", source: "x", spoken: [{ alias: "y" }] }),
+  );
+  invalid(
+    "a substitution with an empty alias",
+    mathParagraph({
+      format: "tex",
+      source: "x",
+      spoken: [{ text: "x", alias: "" }],
+    }),
+  );
+  invalid(
+    "a substitution beside ipa",
+    mathParagraph({
+      format: "tex",
+      source: "x",
+      spoken: [{ text: "x", ipa: "x", alias: "y" }],
+    }),
+  );
+  invalid(
+    "a spell-out with another sayAs value",
+    mathParagraph({
+      format: "tex",
+      source: "x",
+      spoken: [{ text: "360", sayAs: "digits" }],
+    }),
+  );
+  invalid(
+    "a spell-out without text",
+    mathParagraph({
+      format: "tex",
+      source: "x",
+      spoken: [{ sayAs: "characters" }],
     }),
   );
 });

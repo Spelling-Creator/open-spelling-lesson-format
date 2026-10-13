@@ -89,8 +89,15 @@
             "bold": { "type": "boolean" },
             "italic": { "type": "boolean" },
             "underline": { "type": "boolean" },
-            "ipa": { "$ref": "#/$defs/oneLine", "minLength": 1 }
-          }
+            "ipa": { "$ref": "#/$defs/oneLine", "minLength": 1 },
+            "alias": { "$ref": "#/$defs/oneLine", "minLength": 1 },
+            "sayAs": { "const": "characters" }
+          },
+          "allOf": [
+            { "not": { "required": ["ipa", "alias"] } },
+            { "not": { "required": ["ipa", "sayAs"] } },
+            { "not": { "required": ["alias", "sayAs"] } }
+          ]
         },
         {
           "type": "object",
@@ -311,6 +318,26 @@
           "properties": {
             "text": { "$ref": "#/$defs/oneLine", "minLength": 1 },
             "ipa": { "$ref": "#/$defs/oneLine", "minLength": 1 }
+          }
+        },
+        {
+          "description": "A substitution: the run reads as `text` but is said as `alias`.",
+          "type": "object",
+          "required": ["text", "alias"],
+          "additionalProperties": false,
+          "properties": {
+            "text": { "$ref": "#/$defs/oneLine", "minLength": 1 },
+            "alias": { "$ref": "#/$defs/oneLine", "minLength": 1 }
+          }
+        },
+        {
+          "description": "A spell-out: the characters of `text`, said one by one.",
+          "type": "object",
+          "required": ["text", "sayAs"],
+          "additionalProperties": false,
+          "properties": {
+            "text": { "$ref": "#/$defs/oneLine", "minLength": 1 },
+            "sayAs": { "const": "characters" }
           }
         },
         { "$ref": "#/$defs/pauseRun" }

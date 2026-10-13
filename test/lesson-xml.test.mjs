@@ -244,6 +244,18 @@ suite("rich text (XML)", () => {
     ),
   );
   valid(
+    "a substitution and a spell-out in rich text",
+    p(
+      'the <sub alias="World Wide Fund for Nature">WWF</sub> spells <say-as interpret-as="characters">REEF</say-as>',
+    ),
+  );
+  valid(
+    "nested marks around a sub and a say-as",
+    p(
+      '<b><i><sub alias="x">X</sub></i></b> <u><say-as interpret-as="characters">Y</say-as></u>',
+    ),
+  );
+  valid(
     "a note with source and locator",
     p('Text.<note source="lighthouse" locator="p. 12">See also.</note>'),
   );
@@ -256,6 +268,12 @@ suite("rich text (XML)", () => {
     "a formula with spoken text",
     p(
       '<m format="tex" display="true"><source>\\frac{60}{5} = 12</source><spoken>60 divided by 5<break strength="medium"/>is <phoneme alphabet="ipa" ph="twɛlv">12</phoneme></spoken></m>',
+    ),
+  );
+  valid(
+    "a substitution and a spell-out in spoken text",
+    p(
+      '<m format="tex"><source>1</source><spoken>the <sub alias="World Wide Fund for Nature">WWF</sub> spells <say-as interpret-as="characters">REEF</say-as></spoken></m>',
     ),
   );
   valid(
@@ -276,6 +294,17 @@ suite("rich text (XML)", () => {
   invalid("a break without strength", p("<break/>"));
   invalid("an unknown break strength", p('<break strength="weak"/>'));
   invalid("the JSON pause names as strengths", p('<break strength="short"/>'));
+  invalid("a sub without alias", p("<sub>WWF</sub>"));
+  invalid("a sub with an empty alias", p('<sub alias="">WWF</sub>'));
+  invalid("a say-as without interpret-as", p("<say-as>REEF</say-as>"));
+  invalid(
+    "a say-as with another interpret-as",
+    p('<say-as interpret-as="digits">360</say-as>'),
+  );
+  invalid(
+    "a sub without alias in spoken text",
+    p('<m format="tex"><source>1</source><spoken><sub>WWF</sub></spoken></m>'),
+  );
   invalid("a note with a bad source id", p('<note source="a b"/>'));
   invalid("a formula without format", p("<m><source>1</source></m>"));
   invalid(
