@@ -37,6 +37,8 @@ Each question type in [SPEC.md](SPEC.md#2-question-types) has a stable id, and e
 | `paraphrase` | Paraphrase | `none` | |
 | `broad-open` | Broad open | `none` | |
 
+The table is in the order a section asks the types ([SPEC.md](SPEC.md#the-order-of-the-types)). Renderers SHOULD list types in a printed legend in this order.
+
 The key values mean:
 
 | Value | Meaning |

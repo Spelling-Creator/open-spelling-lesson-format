@@ -80,6 +80,10 @@ When a key only gives examples, the printed lesson has to show that, so a spelle
 | Paraphrase | the passage, retold in the speller's words | none |
 | Broad open | the speller's own reasoning, opinion or imagination | none |
 
+### The order of the types
+
+The types are listed in the order a section asks them. Each one asks a little more of the speller than the one before, so a section starts with facts the passage gives and builds up to the speller's own ideas. Ask your questions in this order. A section doesn't have to use every type, and a lesson shape can set how many of each it asks (see [part 4](#4-lesson-shapes)), but it should keep the order.
+
 ### Known
 
 **What it is.** The answer is stated in the passage, and there is one right answer. A known question checks that the speller took in a fact the passage gives.
@@ -222,7 +226,7 @@ You don't have to use these. They are the defaults, so that lessons from differe
 | VAKT activity | red `#ee1111` | | (not in the legend) |
 | Spelling words | teal `#0c8599` | | (not in the legend) |
 
-The table lists the types in the default legend order: answers from the passage first, opening out to free response last. A printed legend should list only the types the lesson uses.
+A printed legend should list the types in the same order a section asks them, which is the order of this table, and only the types the lesson uses.
 
 ### Sharing a lesson
 
@@ -250,7 +254,7 @@ OSLF has no official shape. Your shape is yours, and so is everyone else's. Writ
 
 This example is written in plain words. The same shape as a file is [examples/six-section.profile.json](examples/six-section.profile.json).
 
-> **Six sections of fifteen questions.** Six sections. Each section has, in this order: an image (optional), a passage of one or two paragraphs, four spelling words of 6 to 9 letters, then 3 known, 2 math, 2 semi-open, 1 prior knowledge, 4 tight opens, any number of would-you-rather questions (optional), 3 broad opens or paraphrases, and a VAKT activity (optional).
+> **Six sections of fifteen questions.** Six sections. Each section has, in this order: an image (optional), a passage of one or two paragraphs, four spelling words of 6 to 9 letters, then 3 known, 1 prior knowledge, 2 math, 2 semi-open, 4 tight opens, any number of would-you-rather questions (optional), 1 paraphrase, 2 broad opens, and a VAKT activity (optional).
 >
 > Firm: known answers appear in the passage; prior knowledge answers don't; a semi-open prompt never contains its own answers.
 >

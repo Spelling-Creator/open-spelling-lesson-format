@@ -85,16 +85,16 @@
           "questionType": "tight-open",
           "prompt": "Name something that gives off light."
         },
-        {
-          "type": "question",
-          "questionType": "paraphrase",
-          "prompt": "In your own words, explain why the lighthouse at Pharos was built."
-        },
         { "type": "heading", "text": "WOULD YOU RATHER" },
         {
           "type": "question",
           "questionType": "would-you-rather",
           "prompt": "Would you rather keep a lighthouse on a lonely island or in a busy harbor?"
+        },
+        {
+          "type": "question",
+          "questionType": "paraphrase",
+          "prompt": "In your own words, explain why the lighthouse at Pharos was built."
         },
         {
           "type": "question",

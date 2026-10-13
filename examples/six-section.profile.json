@@ -19,16 +19,13 @@
         { "block": "passage", "count": { "min": 1, "max": 2 } },
         { "block": "spelling" },
         { "block": "question", "questionType": "known", "count": { "min": 3, "max": 3 } },
+        { "block": "question", "questionType": "prior-knowledge" },
         { "block": "question", "questionType": "math", "count": { "min": 2, "max": 2 } },
         { "block": "question", "questionType": "semi-open", "count": { "min": 2, "max": 2 } },
-        { "block": "question", "questionType": "prior-knowledge" },
         { "block": "question", "questionType": "tight-open", "count": { "min": 4, "max": 4 } },
         { "block": "question", "questionType": "would-you-rather", "count": { "min": 0 } },
-        {
-          "block": "question",
-          "questionType": ["paraphrase", "broad-open"],
-          "count": { "min": 3, "max": 3 }
-        },
+        { "block": "question", "questionType": "paraphrase" },
+        { "block": "question", "questionType": "broad-open", "count": { "min": 2, "max": 2 } },
         { "block": "vakt", "count": { "min": 0, "max": 1 } }
       ]
     },
