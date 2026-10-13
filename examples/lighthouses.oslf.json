@@ -71,7 +71,12 @@
           "questionType": "math",
           "prompt": "A keeper climbed the 120 steps to the lamp 3 times each night. How many steps was that each night?",
           "answers": ["360"],
-          "working": ["120 steps times 3 climbs is 360 steps."]
+          "working": [
+            [
+              "Multiply the steps by the climbs: ",
+              { "math": { "format": "asciimath", "source": "120 xx 3 = 360" } }
+            ]
+          ]
         },
         {
           "type": "question",
@@ -115,7 +120,9 @@
           "type": "passage",
           "paragraphs": [
             [
-              "In 1822, the French scientist Augustin FRESNEL described a new kind of lens.",
+              "In 1822, the French scientist Augustin ",
+              { "text": "FRESNEL", "ipa": "freɪˈnɛl" },
+              " described a new kind of lens.",
               { "note": { "source": "fresnel-lens" } },
               " Rings of glass PRISMS gather the light from a lamp and bend it into one strong beam, so a lighthouse can be seen much farther out to sea."
             ],
@@ -146,7 +153,19 @@
           "questionType": "math",
           "prompt": "A light flashes once every 5 seconds. How many times does it flash in one minute?",
           "answers": ["12"],
-          "working": ["There are 60 seconds in a minute.", "60 divided by 5 is 12."]
+          "working": [
+            "There are 60 seconds in a minute.",
+            [
+              {
+                "math": {
+                  "format": "tex",
+                  "source": "\\frac{60}{5} = 12",
+                  "display": true,
+                  "spoken": ["60 divided by 5", { "pause": "short" }, "is 12"]
+                }
+              }
+            ]
+          ]
         },
         {
           "type": "question",

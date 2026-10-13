@@ -45,6 +45,35 @@ A lesson has a title and one or more **sections**. Each section usually holds so
 
 A lesson can also list its **sources**, the books, articles and websites its passages draw on, and cite them in footnotes.
 
+### Formulas
+
+Passages, questions and math working can include formulas. A formula can sit inside a sentence, or stand on a line of its own. You can write it in either of two notations:
+
+- **AsciiMath** is close to how you would type math in a plain message, and it's quick to learn. It is described at [asciimath.org](https://asciimath.org/).
+- **LaTeX** is what mathematicians and many math tools use.
+
+| To write | AsciiMath | LaTeX |
+|---|---|---|
+| times | `2 xx 8 = 16` | `2 \times 8 = 16` |
+| divided by | `48 -: 6 = 8` | `48 \div 6 = 8` |
+| a fraction | `3/4` | `\frac{3}{4}` |
+| a power | `10^6` | `10^6` |
+| a square root | `sqrt(81) = 9` | `\sqrt{81} = 9` |
+| not equal, at most | `5 != 6`, `x <= 3` | `5 \neq 6`, `x \leq 3` |
+
+Some things to know:
+
+- **Read-aloud.** Formulas are read aloud automatically. If the automatic reading is correct but awkward to hear, you can give the words to read instead, such as "three quarters of the fans". Those words can carry the same pronunciation fixes and pauses as any other text (see [Read-aloud](#read-aloud)).
+- **Prices are safe.** Your editor marks a formula as a formula; symbols around it don't. A price such as $2.50 in a passage stays a price.
+- **Answers are plain text.** The speller spells the answer, so write it as text (`360`, `3/4`), never as a formula.
+
+### Read-aloud
+
+Lessons are read aloud, by an editor's voice or a screen reader. Two controls work anywhere in a lesson's text: a passage, a question, math working, a caption or a heading.
+
+- **Pronunciations.** If read-aloud says a word wrong, most often a name or a place, give the word's pronunciation in the International Phonetic Alphabet (IPA), the notation dictionaries use for sounds: ˈbuːi for "buoy", freɪˈnɛl for "Fresnel". The word still displays exactly as you wrote it.
+- **Pauses.** Punctuation already makes natural pauses. Where pacing needs more, add a short or a long pause of its own; it makes no mark on the page.
+
 ## 2. Question types
 
 ### The example passage
@@ -115,11 +144,11 @@ The types are listed in the order a section asks them. Each one asks a little mo
 
 **What it is.** The answer is a number. It can be a number the passage states, asked as a fill-in-the-blank, or the result of a calculation in a word problem.
 
-**Answer key.** Complete, with one answer. The answer can carry a unit (360 STEPS). A word problem can also carry its **working**: the steps to the answer, in order, so the partner can follow the speller's thinking.
+**Answer key.** Complete, with one answer. The answer can carry a unit (360 STEPS). A word problem can also carry its **working**: the steps to the answer, in order, so the partner can follow the speller's thinking. Working can include [formulas](#formulas).
 
 **Examples.**
 - Fill-in-the-blank: "The lighthouse was built more than ______ years ago." Key: 2,200.
-- Word problem: "A keeper climbed the 120 steps to the lamp 3 times each night. How many steps was that each night?" Key: 360. Working: "120 steps times 3 climbs is 360 steps."
+- Word problem: "A keeper climbed the 120 steps to the lamp 3 times each night. How many steps was that each night?" Key: 360. Working: "Multiply the steps by the climbs:" and the formula `120 xx 3 = 360`.
 
 **Writing one.**
 - Match the math to the speller, not to an age or grade. Presume competence.
