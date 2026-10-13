@@ -53,6 +53,8 @@ The key values mean:
 
 A lesson file is a UTF-8 encoded JSON document ([RFC 8259](https://www.rfc-editor.org/rfc/rfc8259)) that validates against [schema/lesson.schema.json](schema/lesson.schema.json) and meets the rules in this section. The RECOMMENDED file name extension is `.oslf.json`. [examples/lighthouses.oslf.json](examples/lighthouses.oslf.json) is a complete example.
 
+The same lesson can instead be written as XML: [XML-FORMAT.md](XML-FORMAT.md) defines that form, and the two serializations convert losslessly. Everything in this section describes the data model through its JSON form, and it binds the XML form too.
+
 Fields marked REQUIRED below MUST be present. A producer MUST NOT write fields this document does not define, except inside `extensions` ([section 3.11](#311-extensions)).
 
 ### 3.2 Lesson
@@ -130,7 +132,7 @@ Spoken text is a plain string, or an array of runs for the few things plain word
 - a pronunciation: `{ "text": "buoy", "ipa": "ˈbuːi" }`. The words in `text`, said the way `ipa` gives them in the [International Phonetic Alphabet](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet). A consumer whose speech engine cannot take IPA MUST say `text` unchanged instead.
 - a pause: `{ "pause": "short" }` (about what a comma gives) or `{ "pause": "long" }` (clearly longer).
 
-These runs are a deliberately small subset of [SSML](https://www.w3.org/TR/speech-synthesis11/): a pronunciation corresponds to SSML's `<phoneme alphabet="ipa">` and a pause to its `<break>`, so a serialization that carries markup, such as a future XML form of the lesson file, can write them as those elements. No other part of SSML is in OSLF, and `<audio>` is left out on purpose: speech never fetches anything ([section 7](#7-security-and-privacy)).
+These runs are a deliberately small subset of [SSML](https://www.w3.org/TR/speech-synthesis11/): a pronunciation corresponds to SSML's `<phoneme alphabet="ipa">` and a pause to its `<break>`, and the [XML form](XML-FORMAT.md) writes them as exactly those elements. No other part of SSML is in OSLF, and `<audio>` is left out on purpose: speech never fetches anything ([section 7](#7-security-and-privacy)).
 
 The same two abilities are not confined to spoken text: in rich text, a text run MAY carry `ipa` and a pause run MAY appear anywhere ([section 3.4](#34-rich-text)), so a passage can fix how read-aloud says a name.
 
@@ -202,7 +204,7 @@ A consumer that meets a file with a newer major version than it supports SHOULD 
 
 ## 4. Profiles
 
-A profile is the file form of a lesson shape ([SPEC.md, part 4](SPEC.md#4-lesson-shapes)). It is a JSON document that validates against [schema/profile.schema.json](schema/profile.schema.json). [examples/six-section.profile.json](examples/six-section.profile.json) is a complete example.
+A profile is the file form of a lesson shape ([SPEC.md, part 4](SPEC.md#4-lesson-shapes)). It is a JSON document that validates against [schema/profile.schema.json](schema/profile.schema.json). [examples/six-section.profile.json](examples/six-section.profile.json) is a complete example. Like a lesson, a profile can instead be written as XML ([XML-FORMAT.md section 7](XML-FORMAT.md#7-profiles)).
 
 ### 4.1 Profile files
 
@@ -284,7 +286,6 @@ Open questions about the question types themselves are in [SPEC.md](SPEC.md#open
 2. **Wording rules in profiles.** Profiles cannot yet check prompt wording, such as a would-you-rather prompt starting "Would you rather". Wording depends on the language, so these rules need a design that works across languages.
 3. **Section metadata.** Should a section be able to say which profile slot or which level it is written for?
 4. **Math references.** Both math formats are defined by what MathJax 4 does. Should a later version pin a narrower, written-down subset, so that tools that don't use MathJax can match it exactly?
-5. **XML serialization.** An XML form of the lesson file is planned. Spoken text's runs are already shaped to map onto SSML's `phoneme` and `break` elements; the rest of the mapping is not yet designed.
 
 ## Appendix A: Converting Spelling Creator files
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profile xmlns="urn:oslf:profile" oslf-profile="0.1" id="urn:oslf:example:six-section" version="0.1" license="BSD-3-Clause">
+  <name>Example: six sections of fifteen questions</name>
+  <description>An example profile for the OSLF draft. Six sections, each with an optional image, a passage, four spelling words and fifteen questions in a fixed order, with optional would-you-rather questions and an optional VAKT activity at the end.</description>
+  <rule kind="section-count" id="six-sections">
+    <count min="6" max="6"/>
+  </rule>
+  <rule kind="section-shape" id="section-order">
+    <slot block="image" min="0" max="1"/>
+    <slot block="passage" min="1" max="2"/>
+    <slot block="spelling"/>
+    <slot block="question" question-type="known" min="3" max="3"/>
+    <slot block="question" question-type="prior-knowledge"/>
+    <slot block="question" question-type="math" min="2" max="2"/>
+    <slot block="question" question-type="semi-open" min="2" max="2"/>
+    <slot block="question" question-type="tight-open" min="4" max="4"/>
+    <slot block="question" question-type="would-you-rather" min="0"/>
+    <slot block="question" question-type="paraphrase"/>
+    <slot block="question" question-type="broad-open" min="2" max="2"/>
+    <slot block="vakt" min="0" max="1"/>
+  </rule>
+  <rule kind="spelling-words" id="spelling-words" unique-in-lesson="true">
+    <count min="4" max="4"/>
+    <letters min="6" max="9"/>
+  </rule>
+  <rule kind="answer-in-passage" id="known-in-passage" severity="error" question-types="known"/>
+  <rule kind="answer-not-in-passage" id="prior-knowledge-not-in-passage" severity="error" question-types="prior-knowledge"/>
+  <rule kind="prompt-gives-answer" id="semi-open-prompt" severity="error" question-types="semi-open"/>
+  <rule kind="answer-reuse" id="answer-reuse" question-types="known math semi-open"/>
+</profile>

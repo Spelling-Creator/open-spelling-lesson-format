@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- XML Schema for the OSLF profile, version 0.1 (draft).
+     See XML-FORMAT.md. This schema checks structure only: the profile
+     rules in FILE-FORMAT.md section 4 apply on top of it. -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:o="urn:oslf:profile"
+           targetNamespace="urn:oslf:profile"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+  <xs:simpleType name="nonEmpty">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="questionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="known"/>
+      <xs:enumeration value="prior-knowledge"/>
+      <xs:enumeration value="math"/>
+      <xs:enumeration value="semi-open"/>
+      <xs:enumeration value="tight-open"/>
+      <xs:enumeration value="would-you-rather"/>
+      <xs:enumeration value="paraphrase"/>
+      <xs:enumeration value="broad-open"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="questionTypeList">
+    <xs:restriction>
+      <xs:simpleType>
+        <xs:list itemType="o:questionType"/>
+      </xs:simpleType>
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="severity">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="error"/>
+      <xs:enumeration value="warning"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="blockKind">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="passage"/>
+      <xs:enumeration value="spelling"/>
+      <xs:enumeration value="image"/>
+      <xs:enumeration value="question"/>
+      <xs:enumeration value="vakt"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="range">
+    <xs:attribute name="min" type="xs:nonNegativeInteger"/>
+    <xs:attribute name="max" type="xs:nonNegativeInteger"/>
+  </xs:complexType>
+
+  <xs:complexType name="slot">
+    <xs:attribute name="block" use="required" type="o:blockKind"/>
+    <xs:attribute name="question-type" type="o:questionTypeList"/>
+    <xs:attribute name="min" type="xs:nonNegativeInteger"/>
+    <xs:attribute name="max" type="xs:nonNegativeInteger"/>
+  </xs:complexType>
+
+  <xs:complexType name="rule">
+    <xs:sequence>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="count" type="o:range" minOccurs="0"/>
+      <xs:element name="letters" type="o:range" minOccurs="0"/>
+      <xs:element name="slot" type="o:slot" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="kind" use="required" type="o:nonEmpty"/>
+    <xs:attribute name="id" type="o:nonEmpty"/>
+    <xs:attribute name="severity" type="o:severity"/>
+    <xs:attribute name="question-types" type="o:questionTypeList"/>
+    <xs:attribute name="allow-other" type="xs:boolean"/>
+    <xs:attribute name="unique-in-lesson" type="xs:boolean"/>
+    <xs:anyAttribute namespace="##other" processContents="lax"/>
+  </xs:complexType>
+
+  <xs:complexType name="person">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="url" type="o:nonEmpty"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:element name="profile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name" type="o:nonEmpty"/>
+        <xs:element name="description" type="xs:string" minOccurs="0"/>
+        <xs:element name="publisher" type="o:person" minOccurs="0"/>
+        <xs:element name="rule" type="o:rule" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="oslf-profile" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="0.1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="id" use="required" type="o:nonEmpty"/>
+      <xs:attribute name="version" type="o:nonEmpty"/>
+      <xs:attribute name="license" type="o:nonEmpty"/>
+      <xs:anyAttribute namespace="##other" processContents="lax"/>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
