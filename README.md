@@ -30,6 +30,10 @@ Lessons for spellers share a vocabulary: known questions, semi-opens, tight and 
 | [examples/six-section.profile.json](examples/six-section.profile.json) | An example lesson shape, as a profile.           |
 | [examples/six-section.profile.xml](examples/six-section.profile.xml)   | The same profile, as XML.                        |
 
+## Tests
+
+[test/](test/) checks the example files against the schemas and exercises the schemas themselves with valid and invalid documents, in both forms. Run them with `pnpm install` and `pnpm test` (the XML tests use `xmllint`, which ships with macOS and most Linux distributions).
+
 ## Principles
 
 - **No method names.** OSLF describes lessons, not methods, and doesn't claim what any method requires.
@@ -43,6 +47,6 @@ Copyright (c) 2026, playforge-coding.
 | Files                                                                                                        | License                                                                              |
 | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | [SPEC.md](SPEC.md), [FILE-FORMAT.md](FILE-FORMAT.md), [XML-FORMAT.md](XML-FORMAT.md), [README.md](README.md) | [Creative Commons Attribution 4.0 International](LICENSES/CC-BY-4.0.txt) (CC BY 4.0) |
-| [schema/](schema/), [examples/](examples/)                                                                   | [BSD 3-Clause](LICENSES/BSD-3-Clause.txt)                                            |
+| [schema/](schema/), [examples/](examples/), [test/](test/)                                                   | [BSD 3-Clause](LICENSES/BSD-3-Clause.txt)                                            |
 
 The schemas and examples use a code license so that tools can copy them into their own source code and tests on the same terms as other code.

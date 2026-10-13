@@ -1,9 +1,11 @@
 {
   "scripts": {
-    "fmt": "prettier . --write"
+    "fmt": "prettier . --write",
+    "test": "node --test \"test/*.test.mjs\""
   },
   "devDependencies": {
     "@prettier/plugin-oxc": "^0.2.3",
+    "ajv": "^8.20.0",
     "prettier": "^3.9.10"
   }
 }
